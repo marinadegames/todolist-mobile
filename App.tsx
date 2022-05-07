@@ -12,14 +12,10 @@ export default function App() {
         <NativeBaseProvider>
             <View style={styles.container}>
                 <StatusBar style={'auto'} backgroundColor={'#E3E9FF'}/>
-
                 <Header/>
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
                     <Todolist/>
-            
                 </ScrollView>
-
-
             </View>
         </NativeBaseProvider>
     );

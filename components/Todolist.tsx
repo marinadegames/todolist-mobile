@@ -47,7 +47,7 @@ export default function Todolist() {
         setInputValue('')
     }
 
-    const changeInputAddTask = (title: string ) => {
+    const changeInputAddTask = (title: string) => {
         setInputValue(title)
     }
 
@@ -56,6 +56,18 @@ export default function Todolist() {
 
             <View style={styles.todolistTitleBox}>
                 <Text style={styles.todolistTitle}>Study: </Text>
+            </View>
+
+            <View style={styles.filtersTodolist}>
+                <Button w={'30%'} size={"xs"} variant={'outline'} borderWidth={2} borderRadius={8} borderColor={'#A073D8'}>
+                    <Text style={{color: '#A073D8', fontWeight: 'bold'}}>ALL</Text>
+                </Button>
+                <Button w={'30%'} size={"xs"} variant={'outline'} borderWidth={2} borderRadius={8} borderColor={'#E37482'}>
+                    <Text style={{color: '#E37482', fontWeight: 'bold'}}>ACTIVE</Text>
+                </Button>
+                <Button w={'30%'} size={"xs"} variant={'outline'} borderWidth={2} borderRadius={8} borderColor={'#2EAC64'}>
+                    <Text style={{color: '#2EAC64', fontWeight: 'bold'}}>COMPL</Text>
+                </Button>
             </View>
 
             <View style={styles.inputAddTaskGroup}>
@@ -156,5 +168,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
-    buttonAddTask: {}
+    filtersTodolist: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    }
 });
