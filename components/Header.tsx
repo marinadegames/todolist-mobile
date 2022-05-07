@@ -12,11 +12,13 @@ export default function Header() {
 
 const styles = StyleSheet.create({
     headerBox: {
+        borderRadius: 5,
         backgroundColor: '#fff',
         width: '100%',
         padding: 20,
     },
     textHeader: {
+        color: '#A073D8',
         fontSize: 30,
         fontWeight: 'bold'
     }
