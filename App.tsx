@@ -15,6 +15,10 @@ export default function App() {
                 <Header/>
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
                     <Todolist/>
+                    <Todolist/>
+                    <Todolist/>
+                    <Todolist/>
+                    <Todolist/>
                 </ScrollView>
             </View>
         </NativeBaseProvider>
@@ -25,7 +29,8 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 30,
         flex: 1,
-        padding: 20,
+        paddingHorizontal: 20,
+        paddingTop: 20,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         backgroundColor: '#E3E9FF',

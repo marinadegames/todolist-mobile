@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import {Button, Checkbox, Input,} from "native-base";
 
 type TaskType = {
@@ -33,9 +33,9 @@ export default function Todolist() {
     const [inputValue, setInputValue] = useState<string>('')
 
 
-    const changeIsDone = (id: number, isDone: boolean) => {
+    const changeIsDone = useCallback((id: number, isDone: boolean) => {
         setTasks(tasks.map(t => t.id === id ? {...t, isDone: !isDone} : t))
-    }
+    }, [])
 
     const addTask = () => {
         const newTask: TaskType = {
