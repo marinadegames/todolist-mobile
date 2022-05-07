@@ -1,6 +1,6 @@
-import {StyleSheet, View, Text} from 'react-native';
+import {NativeSyntheticEvent, StyleSheet, Text, TextInputChangeEventData, View} from 'react-native';
 import {useState} from "react";
-import {Checkbox} from "native-base";
+import {Button, Checkbox, Input,} from "native-base";
 
 type TaskType = {
     id: number
@@ -10,6 +10,7 @@ type TaskType = {
 
 
 export default function Todolist() {
+
 
     const [tasks, setTasks] = useState<TaskType[]>([
         {
@@ -29,18 +30,26 @@ export default function Todolist() {
         },
     ])
 
+    const [inputValue, setInputValue] = useState<string>('')
+
+
     const changeIsDone = (id: number, isDone: boolean) => {
-        if (isDone){
-            setTasks(tasks.map(t => t.id === id ? {...t, isDone: false} : t))
-        }
-        else {
-            setTasks(tasks.map(t => t.id === id ? {...t, isDone: true} : t))
-        }
-
-
+        setTasks(tasks.map(t => t.id === id ? {...t, isDone: !isDone} : t))
     }
 
+    const addTask = () => {
+        const newTask: TaskType = {
+            id: 4,
+            title: inputValue,
+            isDone: false
+        }
+        setTasks([...tasks, newTask])
+        setInputValue('')
+    }
 
+    const changeInputAddTask = (title: string ) => {
+        setInputValue(title)
+    }
 
     return (
         <View style={styles.todolist}>
@@ -49,7 +58,34 @@ export default function Todolist() {
                 <Text style={styles.todolistTitle}>Study: </Text>
             </View>
 
-            {/*TASKS*/}
+            <View style={styles.inputAddTaskGroup}>
+                <Input w={'85%'}
+                       placeholder={'add task'}
+                       borderWidth={2}
+                       outlineColor={'#A073D8'}
+                       borderColor={'#A073D8'}
+                       fontSize='20'
+                       borderRightWidth={0}
+                       borderBottomRightRadius={0}
+                       borderTopRightRadius={0}
+                       value={inputValue}
+                       onChangeText={changeInputAddTask}
+                />
+                <Button variant={'outline'}
+                        w={'15%'}
+                        colorScheme='purple'
+                        fontSize='20'
+                        borderWidth={2}
+                        color={'#A073D8'}
+                        borderBottomLeftRadius={0}
+                        borderTopLeftRadius={0}
+                        borderColor={'#A073D8'}
+                        onPress={addTask}
+                >+</Button>
+            </View>
+
+            {/*TASKS*/
+            }
             <View style={styles.todolistBlock}>
                 {tasks.map(t => {
                     return (
@@ -68,7 +104,8 @@ export default function Todolist() {
 
 
         </View>
-    );
+    )
+        ;
 }
 
 const styles = StyleSheet.create({
@@ -112,4 +149,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
+    inputAddTaskGroup: {
+        paddingVertical: 10,
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    buttonAddTask: {}
 });

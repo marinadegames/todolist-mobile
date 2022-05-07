@@ -1,5 +1,5 @@
 import {StatusBar} from 'expo-status-bar';
-import {StyleSheet, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import React from "react";
 import {NativeBaseProvider} from "native-base";
 import Header from "./components/Header";
@@ -14,7 +14,11 @@ export default function App() {
                 <StatusBar style={'auto'} backgroundColor={'#E3E9FF'}/>
 
                 <Header/>
-                <Todolist/>
+                <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
+                    <Todolist/>
+            
+                </ScrollView>
+
 
             </View>
         </NativeBaseProvider>
@@ -23,12 +27,16 @@ export default function App() {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 20,
+        marginTop: 30,
         flex: 1,
         padding: 20,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         backgroundColor: '#E3E9FF',
+    },
+    scrollView: {
+        marginTop: 30,
+        width: '100%',
     },
 
 });
