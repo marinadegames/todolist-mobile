@@ -1,4 +1,4 @@
-import {NativeSyntheticEvent, StyleSheet, Text, TextInputChangeEventData, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {useState} from "react";
 import {Button, Checkbox, Input,} from "native-base";
 
