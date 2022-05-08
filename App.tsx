@@ -13,18 +13,20 @@ export default function App() {
 
     const translateY = animatedValue.interpolate({
         inputRange: [0, 1],
-        outputRange: [0, -80],
+        outputRange: [0, -200],
     })
 
     const startAnimate = (show: boolean) => {
         if (show) {
             Animated.timing(animatedValue, {
                 toValue: 1,
+                duration: 200,
                 useNativeDriver: true
             }).start()
         } else {
             Animated.timing(animatedValue, {
                 toValue: 0,
+                duration: 200,
                 useNativeDriver: true
             }).start()
         }
@@ -47,8 +49,8 @@ export default function App() {
                         startAnimate(show)
                     }}/>
                 </View>
-                <View style={{height: 80, backgroundColor: 'green'}}>
-                    <Text>Input</Text>
+                <View style={{height: 200}}>
+                    <Text style={{fontSize: 30, fontWeight: 'bold', color: '#8992ac',}}>SETTINGS</Text>
                 </View>
             </Animated.View>
 
@@ -72,17 +74,17 @@ const styles = StyleSheet.create({
     },
     containerAbsolute: {
         position: 'absolute',
-        bottom: -80,
+        bottom: -200,
         alignItems: 'center',
         backgroundColor: '#fff',
         width: '100%',
     },
     separator: {
         width: 100,
-        height: 10,
+        height: 12,
         backgroundColor: '#A073D8',
-        borderRadius: 10 / 2,
-        marginTop: 15
+        borderRadius: 14 / 2,
+        marginTop: 12
     }
 });
 
