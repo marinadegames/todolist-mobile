@@ -1,9 +1,11 @@
 import {StatusBar} from 'expo-status-bar';
-import {ScrollView, StyleSheet, View, Text, Alert, Animated} from 'react-native';
+import {Animated, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from "react";
 import {NativeBaseProvider} from "native-base";
 import Header from "./components/Header";
 import Todolist from "./components/Todolist";
+import {Provider} from 'react-redux';
+import {store} from "./bll/store";
 
 
 export default function App() {
@@ -34,26 +36,27 @@ export default function App() {
 
     return (
         <NativeBaseProvider>
-            <View style={styles.container}>
-                <StatusBar style={'auto'} backgroundColor={'#E3E9FF'}/>
-                <Header/>
-                <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
-                    <Todolist/>
-                </ScrollView>
-            </View>
-
-            <Animated.View style={{...styles.containerAbsolute, transform: [{translateY}]}}>
-                <View style={{height: 40}}>
-                    <Text style={styles.separator} onPress={() => {
-                        setShow(!show)
-                        startAnimate(show)
-                    }}/>
+            <Provider store={store}>
+                <View style={styles.container}>
+                    <StatusBar style={'auto'} backgroundColor={'#E3E9FF'}/>
+                    <Header/>
+                    <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
+                        <Todolist/>
+                    </ScrollView>
                 </View>
-                <View style={{height: 200}}>
-                    <Text style={{fontSize: 30, fontWeight: 'bold', color: '#8992ac',}}>SETTINGS</Text>
-                </View>
-            </Animated.View>
 
+                <Animated.View style={{...styles.containerAbsolute, transform: [{translateY}]}}>
+                    <View style={{height: 40}}>
+                        <Text style={styles.separator} onPress={() => {
+                            setShow(!show)
+                            startAnimate(show)
+                        }}/>
+                    </View>
+                    <View style={{height: 200}}>
+                        <Text style={{fontSize: 30, fontWeight: 'bold', color: '#8992ac',}}>SETTINGS</Text>
+                    </View>
+                </Animated.View>
+            </Provider>
         </NativeBaseProvider>
     );
 }

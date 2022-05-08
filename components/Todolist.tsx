@@ -1,12 +1,9 @@
 import {Animated, StyleSheet, Text, View} from 'react-native';
 import React, {useCallback, useState} from "react";
 import {Button, Checkbox, Input,} from "native-base";
+import { TaskType } from '../bll/slice';
 
-type TaskType = {
-    id: number
-    title: string
-    isDone: boolean
-}
+
 
 export default function Todolist() {
 
