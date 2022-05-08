@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import {useCallback, useState} from "react";
+import {Animated, StyleSheet, Text, View} from 'react-native';
+import React, {useCallback, useState} from "react";
 import {Button, Checkbox, Input,} from "native-base";
 
 type TaskType = {
@@ -8,9 +8,7 @@ type TaskType = {
     isDone: boolean
 }
 
-
 export default function Todolist() {
-
 
     const [tasks, setTasks] = useState<TaskType[]>([
         {
@@ -115,6 +113,7 @@ export default function Todolist() {
             </View>
 
 
+
         </View>
     )
         ;
@@ -173,5 +172,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-    }
+    },
+
 });
