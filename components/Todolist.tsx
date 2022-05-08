@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useCallback, useState} from "react";
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from "react";
 import {Button, Checkbox, Input,} from "native-base";
-import {addTask, changeIsDone, TaskType} from '../bll/slice';
+import {addTask, changeIsDone} from '../bll/slice';
 import {useAppDispatch, useAppSelector} from "../bll/store";
 
 
@@ -79,13 +79,20 @@ export default function Todolist() {
                 {tasks_.map(t => {
                     return (
                         <View key={t.id} style={styles.taskBox}>
-                            <Text style={t.isDone ? styles.taskFontIsDone : styles.taskFont}>{t.title}</Text>
                             <Checkbox isChecked={t.isDone}
                                       accessibilityLabel={'123'}
                                       size={"lg"}
                                       colorScheme="purple"
                                       onChange={() => changeIsDoneFoo(t.id, !t.isDone)}
                                       value={'purple'}/>
+                            <View style={{}}>
+                                <Text style={t.isDone ? styles.taskFontIsDone : styles.taskFont}>{t.title}</Text>
+                            </View>
+                            <View>
+                                <TouchableOpacity style={styles.deleteButton}>
+                                    <Text style={{color: 'red'}}>X</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     )
                 })}
@@ -151,5 +158,15 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-
+    deleteButton: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        borderColor: 'red',
+        borderWidth: 2,
+        borderRadius: 5,
+        height: 27,
+        width: 27
+    }
 });
