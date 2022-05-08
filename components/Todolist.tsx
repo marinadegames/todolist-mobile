@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from "react";
 import {Button, Checkbox, Input,} from "native-base";
-import {addTask, changeIsDone} from '../bll/slice';
+import {addTask, changeIsDone, deleteTask} from '../bll/slice';
 import {useAppDispatch, useAppSelector} from "../bll/store";
 
 
@@ -24,6 +24,10 @@ export default function Todolist() {
 
     const changeInputAddTask = (title: string) => {
         setInputValue(title)
+    }
+
+    const deleteTaskFoo = (id: number) => {
+        dispatch(deleteTask({id}))
     }
 
     return (
@@ -78,18 +82,20 @@ export default function Todolist() {
             <View style={styles.todolistBlock}>
                 {tasks_.map(t => {
                     return (
-                        <View key={t.id} style={styles.taskBox}>
-                            <Checkbox isChecked={t.isDone}
-                                      accessibilityLabel={'123'}
-                                      size={"lg"}
-                                      colorScheme="purple"
-                                      onChange={() => changeIsDoneFoo(t.id, !t.isDone)}
-                                      value={'purple'}/>
-                            <View style={{}}>
+                        <View key={Math.random()} style={styles.taskBox}>
+                            <View style={{width: '10%'}}>
+                                <Checkbox isChecked={t.isDone}
+                                          accessibilityLabel={'123'}
+                                          size={"lg"}
+                                          colorScheme="purple"
+                                          onChange={() => changeIsDoneFoo(t.id, !t.isDone)}
+                                          value={'purple'}/>
+                            </View>
+                            <View style={{width: '78%'}}>
                                 <Text style={t.isDone ? styles.taskFontIsDone : styles.taskFont}>{t.title}</Text>
                             </View>
-                            <View>
-                                <TouchableOpacity style={styles.deleteButton}>
+                            <View style={{width: '10%'}}>
+                                <TouchableOpacity onPress={() => deleteTaskFoo(t.id)} style={styles.deleteButton}>
                                     <Text style={{color: 'red'}}>X</Text>
                                 </TouchableOpacity>
                             </View>
@@ -164,7 +170,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         borderColor: 'red',
-        borderWidth: 2,
+        borderWidth: 1.5,
         borderRadius: 5,
         height: 27,
         width: 27
