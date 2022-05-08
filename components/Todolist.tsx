@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useCallback, useState} from "react";
 import {Button, Checkbox, Input,} from "native-base";
-import {addTask, TaskType} from '../bll/slice';
+import {addTask, changeIsDone, TaskType} from '../bll/slice';
 import {useAppDispatch, useAppSelector} from "../bll/store";
 
 
@@ -13,9 +13,9 @@ export default function Todolist() {
     const [inputValue, setInputValue] = useState<string>('')
 
 
-    const changeIsDone = useCallback((id: number, isDone: boolean) => {
-        // setTasks(tasks.map(t => t.id === id ? {...t, isDone: !isDone} : t))
-    }, [])
+    const changeIsDoneFoo = (id: number, isDone: boolean) => {
+        dispatch(changeIsDone({id, isDone}))
+    }
 
     const addTaskFoo = () => {
         dispatch(addTask({title: inputValue}))
@@ -52,6 +52,7 @@ export default function Todolist() {
                        outlineColor={'#A073D8'}
                        borderColor={'#A073D8'}
                        fontSize='20'
+                       borderRadius={5}
                        borderRightWidth={0}
                        borderBottomRightRadius={0}
                        borderTopRightRadius={0}
@@ -64,6 +65,7 @@ export default function Todolist() {
                         fontSize='20'
                         borderWidth={2}
                         color={'#A073D8'}
+                        borderRadius={5}
                         borderBottomLeftRadius={0}
                         borderTopLeftRadius={0}
                         borderColor={'#A073D8'}
@@ -82,7 +84,7 @@ export default function Todolist() {
                                       accessibilityLabel={'123'}
                                       size={"lg"}
                                       colorScheme="purple"
-                                      onChange={() => changeIsDone(t.id, t.isDone)}
+                                      onChange={() => changeIsDoneFoo(t.id, !t.isDone)}
                                       value={'purple'}/>
                         </View>
                     )

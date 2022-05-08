@@ -21,6 +21,7 @@ const initialState = {
 }
 
 export const addTask = createAction<{ title: string }>('task/addTask')
+export const changeIsDone = createAction<{ id: number, isDone: boolean }>('task/changeIsDone')
 
 const slice = createSlice({
     name: 'task',
@@ -35,6 +36,10 @@ const slice = createSlice({
                     isDone: false
                 }
                 state.tasks.push(newTask)
+            })
+            .addCase(changeIsDone, (state, action) => {
+                const index = state.tasks.findIndex(t => t.id === action.payload.id)
+                state.tasks[index].isDone = action.payload.isDone
             })
     })
 })
