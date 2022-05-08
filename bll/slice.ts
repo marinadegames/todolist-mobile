@@ -1,6 +1,6 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createAction, createSlice} from "@reduxjs/toolkit";
 
-const initState = {
+const initialState = {
     tasks: [
         {
             id: 1,
@@ -20,12 +20,22 @@ const initState = {
     ] as TaskType[]
 }
 
+export const addTask = createAction<{ title: string }>('task/addTask')
+
 const slice = createSlice({
     name: 'task',
-    initialState: {},
+    initialState,
     reducers: {},
     extraReducers: (builder => {
-
+        builder
+            .addCase(addTask, (state, action) => {
+                const newTask: TaskType = {
+                    id: state.tasks.length + 1,
+                    title: action.payload.title,
+                    isDone: false
+                }
+                state.tasks.push(newTask)
+            })
     })
 })
 

@@ -1,44 +1,24 @@
-import {Animated, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React, {useCallback, useState} from "react";
 import {Button, Checkbox, Input,} from "native-base";
-import { TaskType } from '../bll/slice';
-
+import {addTask, TaskType} from '../bll/slice';
+import {useAppDispatch, useAppSelector} from "../bll/store";
 
 
 export default function Todolist() {
 
-    const [tasks, setTasks] = useState<TaskType[]>([
-        {
-            id: 1,
-            title: 'HTML',
-            isDone: true
-        },
-        {
-            id: 2,
-            title: 'React',
-            isDone: true
-        },
-        {
-            id: 3,
-            title: 'React-native',
-            isDone: false
-        },
-    ])
+    const tasks_ = useAppSelector(state => state.reducer.tasks)
+    const dispatch = useAppDispatch()
 
     const [inputValue, setInputValue] = useState<string>('')
 
 
     const changeIsDone = useCallback((id: number, isDone: boolean) => {
-        setTasks(tasks.map(t => t.id === id ? {...t, isDone: !isDone} : t))
+        // setTasks(tasks.map(t => t.id === id ? {...t, isDone: !isDone} : t))
     }, [])
 
-    const addTask = () => {
-        const newTask: TaskType = {
-            id: 4,
-            title: inputValue,
-            isDone: false
-        }
-        setTasks([...tasks, newTask])
+    const addTaskFoo = () => {
+        dispatch(addTask({title: inputValue}))
         setInputValue('')
     }
 
@@ -87,14 +67,14 @@ export default function Todolist() {
                         borderBottomLeftRadius={0}
                         borderTopLeftRadius={0}
                         borderColor={'#A073D8'}
-                        onPress={addTask}
+                        onPress={addTaskFoo}
                 >+</Button>
             </View>
 
             {/*TASKS*/
             }
             <View style={styles.todolistBlock}>
-                {tasks.map(t => {
+                {tasks_.map(t => {
                     return (
                         <View key={t.id} style={styles.taskBox}>
                             <Text style={t.isDone ? styles.taskFontIsDone : styles.taskFont}>{t.title}</Text>
@@ -108,7 +88,6 @@ export default function Todolist() {
                     )
                 })}
             </View>
-
 
 
         </View>
