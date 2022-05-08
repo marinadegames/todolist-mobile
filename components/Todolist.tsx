@@ -122,11 +122,11 @@ const styles = StyleSheet.create({
     },
     taskFont: {
         color: '#8992ac',
-        fontSize: 25,
+        fontSize: 21,
     },
     taskFontIsDone: {
         color: '#8992ac',
-        fontSize: 25,
+        fontSize: 21,
         textDecorationLine: 'line-through',
         opacity: 0.5,
     },
