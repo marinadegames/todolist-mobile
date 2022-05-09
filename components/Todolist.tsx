@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from "react";
-import {Button, Checkbox, Input,} from "native-base";
+import React, {useCallback, useState} from "react";
+import {Button, Checkbox, FormControl, Input, WarningOutlineIcon,} from "native-base";
 import {addTask, changeIsDone, deleteTask} from '../bll/slice';
 import {useAppDispatch, useAppSelector} from "../bll/store";
 
@@ -11,20 +11,24 @@ export default function Todolist() {
     const dispatch = useAppDispatch()
 
     const [inputValue, setInputValue] = useState<string>('')
-
+    const [errorAddTask, setErrorAddTask] = useState<boolean>(false)
 
     const changeIsDoneFoo = (id: number, isDone: boolean) => {
         dispatch(changeIsDone({id, isDone}))
     }
 
     const addTaskFoo = () => {
-        dispatch(addTask({title: inputValue}))
-        setInputValue('')
+        if (inputValue !== '' && !errorAddTask) {
+            dispatch(addTask({title: inputValue}))
+            setInputValue('')
+        }
+        if (inputValue === '') setErrorAddTask(true)
     }
 
-    const changeInputAddTask = (title: string) => {
+    const changeInputAddTask = useCallback((title: string) => {
         setInputValue(title)
-    }
+        setErrorAddTask(false)
+    }, [])
 
     const deleteTaskFoo = (id: number) => {
         dispatch(deleteTask({id}))
@@ -50,33 +54,38 @@ export default function Todolist() {
             </View>
 
             <View style={styles.inputAddTaskGroup}>
-                <Input w={'85%'}
-                       placeholder={'add task'}
-                       borderWidth={2}
-                       outlineColor={'#A073D8'}
-                       borderColor={'#A073D8'}
-                       fontSize='20'
-                       borderRadius={5}
-                       borderRightWidth={0}
-                       borderBottomRightRadius={0}
-                       borderTopRightRadius={0}
-                       value={inputValue}
-                       onChangeText={changeInputAddTask}
+                <Input
+                    w={'85%'}
+                    placeholder={'add task'}
+                    borderWidth={2}
+                    outlineColor={errorAddTask ? '#E37482' : '#A073D8'}
+                    borderColor={errorAddTask ? '#E37482' : '#A073D8'}
+                    fontSize='20'
+                    borderRadius={5}
+                    borderRightWidth={0}
+                    borderBottomRightRadius={0}
+                    borderTopRightRadius={0}
+                    value={inputValue}
+                    onChangeText={changeInputAddTask}
                 />
                 <Button variant={'outline'}
                         w={'15%'}
                         colorScheme='purple'
-                        fontSize='20'
                         borderWidth={2}
-                        color={'#A073D8'}
+                        color={errorAddTask ? '#E37482' : '#A073D8'}
                         borderRadius={5}
                         borderBottomLeftRadius={0}
                         borderTopLeftRadius={0}
-                        borderColor={'#A073D8'}
+                        borderColor={errorAddTask ? '#E37482' : '#A073D8'}
                         onPress={addTaskFoo}
                 >+</Button>
-            </View>
 
+            </View>
+            {errorAddTask && (
+                <View style={{marginBottom: 8}}>
+                    <Text style={{color: 'red', fontSize: 17}}>Need a title!</Text>
+                </View>
+            )}
             {/*TASKS*/
             }
             <View style={styles.todolistBlock}>
