@@ -24,7 +24,7 @@ export const addTask = createAction<{ title: string }>('task/addTask')
 export const changeIsDone = createAction<{ id: number, isDone: boolean }>('task/changeIsDone')
 export const deleteTask = createAction<{ id: number }>('task/deleteTask')
 
-const slice = createSlice({
+const sliceTasks = createSlice({
     name: 'task',
     initialState,
     reducers: {},
@@ -49,7 +49,7 @@ const slice = createSlice({
     })
 })
 
-export const reducer = slice.reducer
+export const tasksReducer = sliceTasks.reducer
 
 export type TaskType = {
     id: number

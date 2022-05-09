@@ -1,10 +1,12 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
-import {reducer} from "./slice";
+import {tasksReducer} from "./sliceTasks";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import {todolistsReducer} from "./sliceTodolists";
 
 
 const rootReducer = combineReducers({
-    reducer,
+    tasksReducer,
+    todolistsReducer: todolistsReducer,
 })
 
 export const store = configureStore({

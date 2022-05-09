@@ -1,7 +1,7 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useCallback, useState} from "react";
 import {Button, Checkbox, Input,} from "native-base";
-import {addTask, changeIsDone, deleteTask} from '../bll/slice';
+import {addTask, changeIsDone, deleteTask, tasksReducer} from '../bll/sliceTasks';
 import {useAppDispatch, useAppSelector} from "../bll/store";
 import FilterButtons from './FilterButtons';
 
@@ -9,7 +9,7 @@ export type filterTasksType = 'ALL' | 'ACTIVE' | 'COMPLETED'
 
 export default function Todolist() {
 
-    const tasks_ = useAppSelector(state => state.reducer.tasks)
+    const tasks_ = useAppSelector(state => state.tasksReducer.tasks)
     const dispatch = useAppDispatch()
 
     const [inputValue, setInputValue] = useState<string>('')

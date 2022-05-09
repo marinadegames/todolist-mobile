@@ -23,7 +23,7 @@ export default function FilterButtons({filterType, changeFilterType}: PropsType)
                     borderWidth={2}
                     borderRadius={8}
                     borderColor={'#A073D8'}
-                    onPress={ () => changeFilterFoo('ALL')}>
+                    onPress={() => changeFilterFoo('ALL')}>
                 <Text style={
                     filterType === 'ALL'
                         ? {color: '#fff', fontWeight: 'bold'}
@@ -37,7 +37,7 @@ export default function FilterButtons({filterType, changeFilterType}: PropsType)
                     borderWidth={2}
                     borderRadius={8}
                     borderColor={'#E37482'}
-                    onPress={ () => changeFilterFoo('ACTIVE')}>
+                    onPress={() => changeFilterFoo('ACTIVE')}>
                 <Text style={
                     filterType === 'ACTIVE'
                         ? {color: '#fff', fontWeight: 'bold'}
@@ -51,7 +51,7 @@ export default function FilterButtons({filterType, changeFilterType}: PropsType)
                     borderWidth={2}
                     borderRadius={8}
                     borderColor={'#2EAC64'}
-                    onPress={ () => changeFilterFoo('COMPLETED')}>
+                    onPress={() => changeFilterFoo('COMPLETED')}>
                 <Text style={
                     filterType === 'COMPLETED'
                         ? {color: '#fff', fontWeight: 'bold'}
@@ -61,7 +61,6 @@ export default function FilterButtons({filterType, changeFilterType}: PropsType)
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     filtersTodolist: {

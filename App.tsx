@@ -44,7 +44,6 @@ export default function App() {
                         <Todolist/>
                     </ScrollView>
                 </View>
-
                 <Animated.View style={{...styles.containerAbsolute, transform: [{translateY}]}}>
                     <View style={{height: 40}}>
                         <Text style={styles.separator} onPress={() => {
