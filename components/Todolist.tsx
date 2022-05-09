@@ -20,7 +20,16 @@ type TodolistPropsType = {
     editToDoListTitleHandler: (ToDoListId: string, newTitle: string) => void
 }
 
-export default function Todolist(props: TodolistPropsType) {
+export function Todolist(
+    {
+        tasks,
+        title,
+        toDoListId,
+        changeToDoListFilter,
+        addTask,
+        editToDoListTitleHandler,
+
+    }: TodolistPropsType) {
 
     // get tasks
     // const dispatch = useAppDispatch()
@@ -29,19 +38,19 @@ export default function Todolist(props: TodolistPropsType) {
     // }, [dispatch, props.toDoListId])
 
     // functions
-    const onClickSetAllFilter = () => props.changeToDoListFilter(props.toDoListId, 'ALL')
-    const onClickSetActiveFilter = () => props.changeToDoListFilter(props.toDoListId, "ACTIVE")
-    const onClickSetCompletedFilter = () => props.changeToDoListFilter(props.toDoListId, "COMPLETED")
-    const addTaskHandler = (title: string) => props.addTask(title.trim(), props.toDoListId)
+    const onClickSetAllFilter = () => changeToDoListFilter(toDoListId, 'ALL')
+    const onClickSetActiveFilter = () => changeToDoListFilter(toDoListId, "ACTIVE")
+    const onClickSetCompletedFilter = () => changeToDoListFilter(toDoListId, "COMPLETED")
+    const addTaskHandler = (title: string) => addTask(title.trim(), toDoListId)
     const editToDoListHandlerForEditableLabel = (toDoId: string, newTitle: string) => {
-        props.editToDoListTitleHandler(props.toDoListId, newTitle)
+        editToDoListTitleHandler(toDoListId, newTitle)
     }
 
     return (
         <View style={styles.todolist}>
 
             <View style={styles.todolistTitleBox}>
-                <Text style={styles.todolistTitle}>Study: </Text>
+                <Text style={styles.todolistTitle}>{title}</Text>
             </View>
 
             {/*<FilterButtons changeFilterType={props.changeToDoListFilter} filterType={filterType}/>*/}
@@ -49,7 +58,7 @@ export default function Todolist(props: TodolistPropsType) {
             <UniversalInput callback={addTaskHandler} placeholder={'add task'}/>
 
             <View style={styles.todolistBlock}>
-                {props.tasks.map(t => {
+                {tasks.map(t => {
                     return (
                         <View key={Math.random()} style={styles.taskBox}>
                             <View style={{width: '10%'}}>

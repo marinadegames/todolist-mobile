@@ -1,23 +1,27 @@
 import {StatusBar} from 'expo-status-bar';
-import {Animated, ScrollView, StyleSheet, Text, View} from 'react-native';
-import React, {useCallback, useState} from "react";
+import {Animated, StyleSheet, Text, View} from 'react-native';
+import React, {useCallback, useEffect, useState} from "react";
 import Header from "./components/Header";
-import {useAppDispatch} from "./redux/store";
+import {rootReducerType, useAppDispatch} from "./redux/store";
+import {initializedAppTC} from "./redux/appReducer";
+import {addTodolistTC} from "./redux/toDoListsReducer";
+import TodolistsList from "./components/TodolistsList";
+import {useSelector} from "react-redux";
 
 
 export default function AppWrapper() {
 
     // const error = useSelector<RootState<any, any, any>, string | null>(state => state.app.error)
     // const notification = useSelector<rootReducerType, string | null>(state => state.app.notification)
-    // const isInitialized = useSelector<rootReducerType, boolean>(state => state.app.initialized)
+    const isInitialized = useSelector<rootReducerType, boolean>(state => state.app.initialized)
     const dispatch = useAppDispatch()
 
-    // useEffect(() => {
-    //     dispatch(initializedAppTC({}))
-    // }, [dispatch])
+    useEffect(() => {
+        dispatch(initializedAppTC({}))
+    }, [dispatch])
 
     const addTodolist = useCallback((title: string) => {
-        // dispatch(addTodolistTC({newTitle: title}))
+        dispatch(addTodolistTC({newTitle: title}))
     }, [])
 
     // if (!isInitialized) return <CircularLoading/>
@@ -49,9 +53,9 @@ export default function AppWrapper() {
             <View style={styles.container}>
                 <StatusBar style={'auto'} backgroundColor={'#E3E9FF'}/>
                 <Header addTodolist={addTodolist}/>
-                <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
-                    {/*<TodolistsList/>*/}
-                </ScrollView>
+
+                    <TodolistsList/>
+
             </View>
             <Animated.View style={{...styles.containerAbsolute, transform: [{translateY}]}}>
                 <View style={{height: 40}}>
