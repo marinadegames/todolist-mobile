@@ -7,6 +7,7 @@ import {initializedAppTC} from "./redux/appReducer";
 import {addTodolistTC} from "./redux/toDoListsReducer";
 import TodolistsList from "./components/TodolistsList";
 import {useSelector} from "react-redux";
+import {CircularLoading} from "./components/CircularLoading";
 
 
 export default function AppWrapper() {
@@ -16,6 +17,8 @@ export default function AppWrapper() {
     const isInitialized = useSelector<rootReducerType, boolean>(state => state.app.initialized)
     const dispatch = useAppDispatch()
 
+    // alert(isInitialized)
+
     useEffect(() => {
         dispatch(initializedAppTC({}))
     }, [dispatch])
@@ -24,7 +27,6 @@ export default function AppWrapper() {
         dispatch(addTodolistTC({newTitle: title}))
     }, [])
 
-    // if (!isInitialized) return <CircularLoading/>
 
     const [show, setShow] = useState<boolean>(true)
     const animatedValue = React.useRef(new Animated.Value(0)).current
@@ -48,13 +50,15 @@ export default function AppWrapper() {
         }
     }
 
+    if (!isInitialized) return <CircularLoading/>
+
     return (
         <>
             <View style={styles.container}>
                 <StatusBar style={'auto'} backgroundColor={'#E3E9FF'}/>
                 <Header addTodolist={addTodolist}/>
 
-                    <TodolistsList/>
+                <TodolistsList/>
 
             </View>
             <Animated.View style={{...styles.containerAbsolute, transform: [{translateY}]}}>

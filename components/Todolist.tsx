@@ -1,8 +1,10 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from "react";
+import React, {useEffect} from "react";
 import {Checkbox,} from "native-base";
 import UniversalInput from "./UniversalInput";
 import {TaskType} from "../api/todolist-api";
+import {useAppDispatch} from "../redux/store";
+import {fetchTasksTC} from "../redux/tasksReducer";
 
 export type filterTasksType = 'ALL' | 'ACTIVE' | 'COMPLETED'
 
@@ -32,10 +34,10 @@ export function Todolist(
     }: TodolistPropsType) {
 
     // get tasks
-    // const dispatch = useAppDispatch()
-    // useEffect(() => {
-    //     dispatch(fetchTasksTC(props.toDoListId))
-    // }, [dispatch, props.toDoListId])
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        dispatch(fetchTasksTC(toDoListId))
+    }, [dispatch, toDoListId])
 
     // functions
     const onClickSetAllFilter = () => changeToDoListFilter(toDoListId, 'ALL')

@@ -1,19 +1,21 @@
 import {useSelector} from "react-redux";
 import {filterTasksType, Todolist} from "./Todolist";
-import {TaskStatuses, TaskType, TodolistType} from "../api/todolist-api";
-import {ScrollView, StyleSheet, Text} from "react-native";
+import {TaskStatuses, TaskType} from "../api/todolist-api";
+import {ScrollView, StyleSheet} from "react-native";
 import {rootReducerType, useAppDispatch} from "../redux/store";
 import {addTasksTC, changeTaskTitleTC, deleteTaskTC, TaskStateType, updateTaskStatusTC} from "../redux/tasksReducer";
 import React, {useCallback, useEffect} from "react";
-import {changeTodolistTitleTC, EditToDoListFilterAC, fetchTodolistsTC, removeTodolistTC} from "../redux/toDoListsReducer";
+import {changeTodolistTitleTC, EditToDoListFilterAC, fetchTodolistsTC, removeTodolistTC, ToDoListType} from "../redux/toDoListsReducer";
 
 
 export default function TodolistsList() {
 
     const tasks = useSelector<rootReducerType, TaskStateType>(state => state.tasks)
-    const todolists = useSelector<rootReducerType, Array<TodolistType>>(state => state.todolist)
+    const todolists = useSelector<rootReducerType, Array<ToDoListType>>(state => state.todolist)
     const isLoggedIn = useSelector<rootReducerType, boolean>(state => state.auth.isLoggedIn)
     const dispatch = useAppDispatch()
+
+
 
     useEffect(() => {
         dispatch(fetchTodolistsTC({}))
@@ -49,7 +51,7 @@ export default function TodolistsList() {
         dispatch(changeTodolistTitleTC({todolistId: id, newTitle: title}))
     }, [dispatch])
 
-    const getTasksForRender = useCallback((filter: filterTasksType, tasks: Array<TaskType>) => {
+    const getTasksForRender = useCallback((filter: filterTasksType, tasks: Array<TaskType>): Array<TaskType> => {
         switch (filter) {
             case "COMPLETED":
                 return tasks.filter(t => t.status === TaskStatuses.Completed)
@@ -66,12 +68,11 @@ export default function TodolistsList() {
         <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
             {todolists.map((tl) => {
                 return (
-
                     <Todolist key={Math.random()}
                               toDoListId={tl.id}
                               title={tl.title}
-                              filter={'ALL'}
-                              tasks={getTasksForRender('ALL', tasks[tl.id])}
+                              filter={tl.filter}
+                              tasks={getTasksForRender(tl.filter, tasks[tl.id])}
                               addTask={addTask}
                               removeTask={removeTask}
                               changeTaskStatus={changeTaskStatus}
