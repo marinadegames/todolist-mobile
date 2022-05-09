@@ -1,35 +1,41 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useCallback, useState} from "react";
+import React from "react";
 import {Checkbox,} from "native-base";
-import {addTask, changeIsDone, deleteTask} from '../bll/sliceTasks';
-import {useAppDispatch, useAppSelector} from "../bll/store";
-import FilterButtons from './FilterButtons';
 import UniversalInput from "./UniversalInput";
+import {TaskType} from "../api/todolist-api";
 
 export type filterTasksType = 'ALL' | 'ACTIVE' | 'COMPLETED'
 
-export default function Todolist() {
+type TodolistPropsType = {
+    toDoListId: string
+    title: string
+    filter: filterTasksType
+    tasks: Array<TaskType>
+    addTask: (title: string, toDoListId: string) => void
+    removeTask: (id: string, toDoListId: string) => void
+    changeTaskStatus: (todolistID: string, taskId: string, status: number) => void
+    changeToDoListFilter: (toDoListId: string, filter: filterTasksType) => void
+    removeToDoList: (toDoListsId: string) => void
+    editTaskHandler: (ToDoListId: string, tId: string, title: string) => void
+    editToDoListTitleHandler: (ToDoListId: string, newTitle: string) => void
+}
 
-    const tasks_ = useAppSelector(state => state.tasksReducer.tasks)
-    const dispatch = useAppDispatch()
+export default function Todolist(props: TodolistPropsType) {
 
-    const [filterType, setFilterType] = useState<filterTasksType>('ALL')
+    // get tasks
+    // const dispatch = useAppDispatch()
+    // useEffect(() => {
+    //     dispatch(fetchTasksTC(props.toDoListId))
+    // }, [dispatch, props.toDoListId])
 
-    const changeIsDoneFoo = (id: number, isDone: boolean) => {
-        dispatch(changeIsDone({id, isDone}))
+    // functions
+    const onClickSetAllFilter = () => props.changeToDoListFilter(props.toDoListId, 'ALL')
+    const onClickSetActiveFilter = () => props.changeToDoListFilter(props.toDoListId, "ACTIVE")
+    const onClickSetCompletedFilter = () => props.changeToDoListFilter(props.toDoListId, "COMPLETED")
+    const addTaskHandler = (title: string) => props.addTask(title.trim(), props.toDoListId)
+    const editToDoListHandlerForEditableLabel = (toDoId: string, newTitle: string) => {
+        props.editToDoListTitleHandler(props.toDoListId, newTitle)
     }
-
-    const addTaskFoo = (value: string) => {
-        dispatch(addTask({title: value}))
-    }
-
-    const deleteTaskFoo = (id: number) => {
-        dispatch(deleteTask({id}))
-    }
-
-    const changeFilterType = useCallback((value: filterTasksType) => {
-        setFilterType(value)
-    }, [filterType])
 
     return (
         <View style={styles.todolist}>
@@ -38,27 +44,28 @@ export default function Todolist() {
                 <Text style={styles.todolistTitle}>Study: </Text>
             </View>
 
-            <FilterButtons changeFilterType={changeFilterType} filterType={filterType}/>
+            {/*<FilterButtons changeFilterType={props.changeToDoListFilter} filterType={filterType}/>*/}
 
-            <UniversalInput callback={addTaskFoo} placeholder={'add task'}/>
+            <UniversalInput callback={addTaskHandler} placeholder={'add task'}/>
 
             <View style={styles.todolistBlock}>
-                {tasks_.map(t => {
+                {props.tasks.map(t => {
                     return (
                         <View key={Math.random()} style={styles.taskBox}>
                             <View style={{width: '10%'}}>
-                                <Checkbox isChecked={t.isDone}
+                                <Checkbox
+                                    // isChecked={t.}
                                           accessibilityLabel={'123'}
                                           size={"lg"}
                                           colorScheme="purple"
-                                          onChange={() => changeIsDoneFoo(t.id, !t.isDone)}
+                                          // onChange={() => changeIsDoneFoo(t.id, !t.isDone)}
                                           value={'purple'}/>
                             </View>
                             <View style={{width: '78%'}}>
-                                <Text style={t.isDone ? styles.taskFontIsDone : styles.taskFont}>{t.title}</Text>
+                                {/*<Text style={t.isDone ? styles.taskFontIsDone : styles.taskFont}>{t.title}</Text>*/}
                             </View>
                             <View style={{width: '10%'}}>
-                                <TouchableOpacity onPress={() => deleteTaskFoo(t.id)} style={styles.deleteButton}>
+                                <TouchableOpacity onPress={() => {}} style={styles.deleteButton}>
                                     <Text style={{color: 'red'}}>X</Text>
                                 </TouchableOpacity>
                             </View>
@@ -81,7 +88,6 @@ const styles = StyleSheet.create({
     todolistTitleBox: {
         backgroundColor: '#A073D8',
         borderRadius: 5,
-
         marginBottom: 10,
         paddingVertical: 5,
         paddingLeft: 10,

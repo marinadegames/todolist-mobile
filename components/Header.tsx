@@ -1,14 +1,21 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from "react";
+import React, {useCallback} from "react";
 import UniversalInput from "./UniversalInput";
 
+type PropsType = {
+    addTodolist: (title: string) => void
+}
 
-export default function Header() {
+export default function Header({addTodolist}: PropsType) {
+
+    const addTodolistFoo = useCallback((title: string) => {
+        addTodolist(title)
+    },[])
 
     return (
         <View style={styles.headerBox}>
             <Text style={styles.textHeader}>Moon tasks</Text>
-            <UniversalInput placeholder={'add todolist'} callback={() => {}}/>
+            <UniversalInput placeholder={'add todolist'} callback={addTodolistFoo}/>
         </View>
     );
 }

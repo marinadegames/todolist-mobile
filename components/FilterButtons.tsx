@@ -5,7 +5,7 @@ import {filterTasksType} from "./Todolist";
 
 type PropsType = {
     filterType: filterTasksType
-    changeFilterType: (value: filterTasksType) => void
+    changeFilterType: (filter: filterTasksType) => void
 }
 
 export default function FilterButtons({filterType, changeFilterType}: PropsType) {
