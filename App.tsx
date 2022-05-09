@@ -1,7 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
 import {Animated, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {useState} from "react";
-import {NativeBaseProvider} from "native-base";
+import {Input, NativeBaseProvider} from "native-base";
 import Header from "./components/Header";
 import Todolist from "./components/Todolist";
 import {Provider} from 'react-redux';
