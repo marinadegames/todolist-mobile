@@ -27,6 +27,7 @@ export const initializedAppTC = createAsyncThunk(
         dispatch(setStatusAppAC({status: 'loading'}))
         try {
             const resp = await authAPI.me()
+            console.log(resp.data)
             if (resp.data.resultCode === 0) {
                 dispatch(setAppInitializedAC({value: true}))
                 dispatch(setIsLoggedInAC({value: true}))

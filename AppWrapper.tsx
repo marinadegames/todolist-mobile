@@ -22,11 +22,9 @@ export default function AppWrapper() {
     useEffect(() => {
         dispatch(initializedAppTC({}))
     }, [dispatch])
-
     const addTodolist = useCallback((title: string) => {
         dispatch(addTodolistTC({newTitle: title}))
     }, [])
-
 
     const [show, setShow] = useState<boolean>(true)
     const animatedValue = React.useRef(new Animated.Value(0)).current

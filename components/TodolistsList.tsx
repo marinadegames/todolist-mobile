@@ -16,7 +16,6 @@ export default function TodolistsList() {
     const dispatch = useAppDispatch()
 
 
-
     useEffect(() => {
         dispatch(fetchTodolistsTC({}))
     }, [dispatch])
