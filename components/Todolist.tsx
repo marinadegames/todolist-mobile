@@ -1,9 +1,11 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useCallback, useState} from "react";
-import {Button, Checkbox, FormControl, Input, WarningOutlineIcon,} from "native-base";
+import {Button, Checkbox, Input,} from "native-base";
 import {addTask, changeIsDone, deleteTask} from '../bll/slice';
 import {useAppDispatch, useAppSelector} from "../bll/store";
+import FilterButtons from './FilterButtons';
 
+export type filterTasksType = 'ALL' | 'ACTIVE' | 'COMPLETED'
 
 export default function Todolist() {
 
@@ -12,6 +14,7 @@ export default function Todolist() {
 
     const [inputValue, setInputValue] = useState<string>('')
     const [errorAddTask, setErrorAddTask] = useState<boolean>(false)
+    const [filterType, setFilterType] = useState<filterTasksType>('ALL')
 
     const changeIsDoneFoo = (id: number, isDone: boolean) => {
         dispatch(changeIsDone({id, isDone}))
@@ -34,6 +37,10 @@ export default function Todolist() {
         dispatch(deleteTask({id}))
     }
 
+    const changeFilterType = useCallback((value: filterTasksType) => {
+        setFilterType(value)
+    }, [filterType])
+
     return (
         <View style={styles.todolist}>
 
@@ -41,17 +48,7 @@ export default function Todolist() {
                 <Text style={styles.todolistTitle}>Study: </Text>
             </View>
 
-            <View style={styles.filtersTodolist}>
-                <Button w={'30%'} size={"xs"} variant={'outline'} borderWidth={2} borderRadius={8} borderColor={'#A073D8'}>
-                    <Text style={{color: '#A073D8', fontWeight: 'bold'}}>ALL</Text>
-                </Button>
-                <Button w={'30%'} size={"xs"} variant={'outline'} borderWidth={2} borderRadius={8} borderColor={'#E37482'}>
-                    <Text style={{color: '#E37482', fontWeight: 'bold'}}>ACTIVE</Text>
-                </Button>
-                <Button w={'30%'} size={"xs"} variant={'outline'} borderWidth={2} borderRadius={8} borderColor={'#2EAC64'}>
-                    <Text style={{color: '#2EAC64', fontWeight: 'bold'}}>COMPL</Text>
-                </Button>
-            </View>
+            <FilterButtons changeFilterType={changeFilterType} filterType={filterType}/>
 
             <View style={styles.inputAddTaskGroup}>
                 <Input
