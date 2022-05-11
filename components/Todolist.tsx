@@ -29,6 +29,7 @@ export function Todolist(
         toDoListId,
         changeToDoListFilter,
         addTask,
+        removeToDoList,
         removeTask,
         editToDoListTitleHandler,
 
@@ -53,6 +54,9 @@ export function Todolist(
     const deleteTask = (taskId:string) => {
         removeTask(taskId, toDoListId)
     }
+    const deleteTodolist = (todolistId: string) => {
+        removeToDoList(todolistId)
+    }
 
     const changeIsDoneFoo = useCallback((taskId: string, todolistId: string, status: TaskStatuses) => {
         if (status === 0) {
@@ -69,6 +73,12 @@ export function Todolist(
 
             <View style={styles.todolistTitleBox}>
                 <Text style={styles.todolistTitle}>{title}</Text>
+                <View >
+                    <TouchableOpacity onPress={() => deleteTodolist(toDoListId)}
+                                      style={styles.deleteButton}>
+                        <Text style={{color: 'red'}}>X</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
 
             {/*<FilterButtons changeFilterType={props.changeToDoListFilter} filterType={filterType}/>*/}
@@ -123,9 +133,14 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     todolistTitleBox: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        alignItems: 'center',
         backgroundColor: '#A073D8',
         borderRadius: 5,
         marginBottom: 10,
+        paddingHorizontal: 5,
         paddingVertical: 5,
         paddingLeft: 10,
     },
