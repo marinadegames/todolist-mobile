@@ -29,6 +29,7 @@ export function Todolist(
         toDoListId,
         changeToDoListFilter,
         addTask,
+        removeTask,
         editToDoListTitleHandler,
 
     }: TodolistPropsType) {
@@ -48,6 +49,11 @@ export function Todolist(
     const editToDoListHandlerForEditableLabel = (toDoId: string, newTitle: string) => {
         editToDoListTitleHandler(toDoListId, newTitle)
     }
+
+    const deleteTask = (taskId:string) => {
+        removeTask(taskId, toDoListId)
+    }
+
     const changeIsDoneFoo = useCallback((taskId: string, todolistId: string, status: TaskStatuses) => {
         if (status === 0) {
             dispatch(updateTaskStatusTC({taskId, todolistId, status: 2}))
@@ -86,8 +92,8 @@ export function Todolist(
                                 <Text style={t.status ? styles.taskFontIsDone : styles.taskFont}>{t.title}</Text>
                             </View>
                             <View style={{width: '10%'}}>
-                                <TouchableOpacity onPress={() => {
-                                }} style={styles.deleteButton}>
+                                <TouchableOpacity onPress={() => deleteTask(t.id)}
+                                                  style={styles.deleteButton}>
                                     <Text style={{color: 'red'}}>X</Text>
                                 </TouchableOpacity>
                             </View>
@@ -108,10 +114,7 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.39,
         shadowRadius: 2.30,
-
         elevation: 3,
-
-
         marginTop: 10,
         marginBottom: 10,
         borderRadius: 5,
