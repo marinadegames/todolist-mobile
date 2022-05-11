@@ -1,10 +1,11 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useEffect} from "react";
+import React, {useCallback, useEffect} from "react";
 import {Checkbox,} from "native-base";
 import UniversalInput from "./UniversalInput";
-import {TaskType} from "../api/todolist-api";
+import {TaskStatuses, TaskType} from "../api/todolist-api";
 import {useAppDispatch} from "../redux/store";
-import {fetchTasksTC} from "../redux/tasksReducer";
+import {fetchTasksTC, updateTaskStatusTC} from "../redux/tasksReducer";
+import {changeTodolistTitleTC} from "../redux/toDoListsReducer";
 
 export type filterTasksType = 'ALL' | 'ACTIVE' | 'COMPLETED'
 
@@ -35,6 +36,7 @@ export function Todolist(
 
     // get tasks
     const dispatch = useAppDispatch()
+
     useEffect(() => {
         dispatch(fetchTasksTC(toDoListId))
     }, [dispatch, toDoListId])
@@ -47,6 +49,15 @@ export function Todolist(
     const editToDoListHandlerForEditableLabel = (toDoId: string, newTitle: string) => {
         editToDoListTitleHandler(toDoListId, newTitle)
     }
+    const changeIsDoneFoo = useCallback((taskId: string, todolistId: string, status: TaskStatuses) => {
+        if (status === 0) {
+            dispatch(updateTaskStatusTC({taskId, todolistId, status: 2}))
+        }
+        if (status === 2) {
+            dispatch(updateTaskStatusTC({taskId, todolistId, status: 0}))
+        }
+
+    }, [])
 
     return (
         <View style={styles.todolist}>
@@ -65,18 +76,19 @@ export function Todolist(
                         <View key={Math.random()} style={styles.taskBox}>
                             <View style={{width: '10%'}}>
                                 <Checkbox
-                                    // isChecked={t.}
-                                          accessibilityLabel={'123'}
-                                          size={"lg"}
-                                          colorScheme="purple"
-                                          // onChange={() => changeIsDoneFoo(t.id, !t.isDone)}
-                                          value={'purple'}/>
+                                    isChecked={!!(t.status !== undefined && t.status)}
+                                    accessibilityLabel={'123'}
+                                    size={"lg"}
+                                    colorScheme="purple"
+                                    onChange={() => changeIsDoneFoo(t.id, toDoListId, t.status)}
+                                    value={'purple'}/>
                             </View>
                             <View style={{width: '78%'}}>
-                                {/*<Text style={t.isDone ? styles.taskFontIsDone : styles.taskFont}>{t.title}</Text>*/}
+                                <Text style={t.status ? styles.taskFontIsDone : styles.taskFont}>{t.title}</Text>
                             </View>
                             <View style={{width: '10%'}}>
-                                <TouchableOpacity onPress={() => {}} style={styles.deleteButton}>
+                                <TouchableOpacity onPress={() => {
+                                }} style={styles.deleteButton}>
                                     <Text style={{color: 'red'}}>X</Text>
                                 </TouchableOpacity>
                             </View>

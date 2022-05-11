@@ -12,9 +12,8 @@ export default function TodolistsList() {
 
     const tasks = useSelector<rootReducerType, TaskStateType>(state => state.tasks)
     const todolists = useSelector<rootReducerType, Array<ToDoListType>>(state => state.todolist)
-    const isLoggedIn = useSelector<rootReducerType, boolean>(state => state.auth.isLoggedIn)
-    const dispatch = useAppDispatch()
 
+    const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(fetchTodolistsTC({}))
@@ -67,7 +66,7 @@ export default function TodolistsList() {
         <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
             {todolists.map((tl) => {
                 return (
-                    <Todolist key={Math.random()}
+                    <Todolist key={tl.id}
                               toDoListId={tl.id}
                               title={tl.title}
                               filter={tl.filter}

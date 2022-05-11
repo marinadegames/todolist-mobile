@@ -8,6 +8,7 @@ import {addTodolistTC} from "./redux/toDoListsReducer";
 import TodolistsList from "./components/TodolistsList";
 import {useSelector} from "react-redux";
 import {CircularLoading} from "./components/CircularLoading";
+import {loginTC} from "./redux/authReducer";
 
 
 export default function AppWrapper() {
@@ -15,13 +16,16 @@ export default function AppWrapper() {
     // const error = useSelector<RootState<any, any, any>, string | null>(state => state.app.error)
     // const notification = useSelector<rootReducerType, string | null>(state => state.app.notification)
     const isInitialized = useSelector<rootReducerType, boolean>(state => state.app.initialized)
+    const isLoggedIn = useSelector<rootReducerType, boolean>(state => state.auth.isLoggedIn)
     const dispatch = useAppDispatch()
 
-    // alert(isInitialized)
+    console.log(isLoggedIn)
 
     useEffect(() => {
         dispatch(initializedAppTC({}))
+        // dispatch(loginTC({data: {email: 'marinadegames@gmail.com', password: 'marina40', rememberMe: false}}))
     }, [dispatch])
+
     const addTodolist = useCallback((title: string) => {
         dispatch(addTodolistTC({newTitle: title}))
     }, [])
@@ -49,6 +53,7 @@ export default function AppWrapper() {
     }
 
     if (!isInitialized) return <CircularLoading/>
+    if (!isLoggedIn) return <Text style={{fontSize: 40, color: 'red'}}>YOU ARE NOT AUTHORIZED!</Text>
 
     return (
         <>

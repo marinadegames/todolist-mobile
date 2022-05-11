@@ -5,6 +5,7 @@ import {appReducer} from "./appReducer";
 import {authReducer} from "./authReducer";
 import {tasksReducer} from "./tasksReducer";
 import thunk from "redux-thunk";
+import {composeWithDevTools} from '@redux-devtools/extension';
 
 const rootReducer = combineReducers({
     tasks: tasksReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     auth: authReducer
 })
 
+const composeEnhancers = composeWithDevTools({});
 
 export const store = configureStore({
     reducer: rootReducer,
