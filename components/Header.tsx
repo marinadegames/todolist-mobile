@@ -22,12 +22,20 @@ export default function Header({addTodolist}: PropsType) {
 
 const styles = StyleSheet.create({
     textHeader: {
-        marginBottom: 10,
         color: '#A073D8',
         fontSize: 30,
         fontWeight: 'bold'
     },
     headerBox: {
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 6,
+            height: 6,
+        },
+        shadowOpacity: 0.39,
+        shadowRadius: 2.30,
+
+        elevation: 3,
         borderRadius: 5,
         backgroundColor: '#fff',
         width: '100%',

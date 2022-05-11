@@ -87,7 +87,8 @@ export default function TodolistsList() {
 
 const styles = StyleSheet.create({
     scrollView: {
-        marginTop: 30,
+        marginTop: 15,
+        marginBottom: 40,
         width: '100%',
     },
 });

@@ -60,7 +60,6 @@ export default function AppWrapper() {
             <View style={styles.container}>
                 <StatusBar style={'auto'} backgroundColor={'#E3E9FF'}/>
                 <Header addTodolist={addTodolist}/>
-
                 <TodolistsList/>
 
             </View>
@@ -84,14 +83,14 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 30,
         flex: 1,
-        paddingHorizontal: 20,
-        paddingTop: 20,
+        paddingHorizontal: 15,
+        paddingTop: 10,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
         backgroundColor: '#E3E9FF',
     },
     scrollView: {
-        marginTop: 30,
+        marginTop: 10,
         width: '100%',
     },
     containerAbsolute: {
@@ -100,6 +99,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         width: '100%',
+
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 8,
+        },
+        shadowOpacity: 0,
+        shadowRadius: 11.14,
+
+        elevation: 17,
     },
     separator: {
         width: 100,

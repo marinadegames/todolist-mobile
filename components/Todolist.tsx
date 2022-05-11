@@ -5,7 +5,6 @@ import UniversalInput from "./UniversalInput";
 import {TaskStatuses, TaskType} from "../api/todolist-api";
 import {useAppDispatch} from "../redux/store";
 import {fetchTasksTC, updateTaskStatusTC} from "../redux/tasksReducer";
-import {changeTodolistTitleTC} from "../redux/toDoListsReducer";
 
 export type filterTasksType = 'ALL' | 'ACTIVE' | 'COMPLETED'
 
@@ -102,7 +101,19 @@ export function Todolist(
 
 const styles = StyleSheet.create({
     todolist: {
-        marginTop: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 6,
+            height: 6,
+        },
+        shadowOpacity: 0.39,
+        shadowRadius: 2.30,
+
+        elevation: 3,
+
+
+        marginTop: 10,
+        marginBottom: 10,
         borderRadius: 5,
         backgroundColor: '#fff',
         width: '100%',
