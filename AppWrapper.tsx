@@ -23,7 +23,7 @@ export default function AppWrapper() {
 
     useEffect(() => {
         dispatch(initializedAppTC({}))
-        // dispatch(loginTC({data: {email: 'marinadegames@gmail.com', password: 'marina40', rememberMe: false}}))
+        dispatch(loginTC({data: {email: 'marinadegames@gmail.com', password: 'marina40', rememberMe: false}}))
     }, [dispatch])
 
     const addTodolist = useCallback((title: string) => {

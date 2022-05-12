@@ -6,9 +6,12 @@ import React, {useCallback, useState} from "react";
 type PropsType = {
     placeholder?: string
     callback: (value: string) => void
+    height?: number
+    valueTitle?: string
+
 }
 
-export default function UniversalInput({placeholder, callback}: PropsType) {
+export default function UniversalInput({placeholder, callback, valueTitle, height, }: PropsType) {
 
     const [inputValue, setInputValue] = useState<string>('')
     const [errorAddTask, setErrorAddTask] = useState<boolean>(false)
@@ -43,7 +46,7 @@ export default function UniversalInput({placeholder, callback}: PropsType) {
                     borderRightWidth={0}
                     borderBottomRightRadius={0}
                     borderTopRightRadius={0}
-                    value={inputValue}
+                    value={valueTitle ? valueTitle : inputValue}
                     onChangeText={changeInputAddTask}
                 />
                 <Button variant={'outline'}

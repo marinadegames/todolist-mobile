@@ -5,6 +5,7 @@ import UniversalInput from "./UniversalInput";
 import {TaskStatuses, TaskType} from "../api/todolist-api";
 import {useAppDispatch} from "../redux/store";
 import {fetchTasksTC, updateTaskStatusTC} from "../redux/tasksReducer";
+import {EditableInput} from "./EditableInput";
 
 export type filterTasksType = 'ALL' | 'ACTIVE' | 'COMPLETED'
 
@@ -31,11 +32,11 @@ export function Todolist(
         addTask,
         removeToDoList,
         removeTask,
+        editTaskHandler,
         editToDoListTitleHandler,
 
     }: TodolistPropsType) {
 
-    // get tasks
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -51,7 +52,7 @@ export function Todolist(
         editToDoListTitleHandler(toDoListId, newTitle)
     }
 
-    const deleteTask = (taskId:string) => {
+    const deleteTask = (taskId: string) => {
         removeTask(taskId, toDoListId)
     }
     const deleteTodolist = (todolistId: string) => {
@@ -68,12 +69,16 @@ export function Todolist(
 
     }, [])
 
+    const changeTaskTitle = useCallback( (taskId: string, title: string) => {
+        editTaskHandler(toDoListId, taskId, title)
+    },[])
+
     return (
         <View style={styles.todolist}>
 
             <View style={styles.todolistTitleBox}>
                 <Text style={styles.todolistTitle}>{title}</Text>
-                <View >
+                <View>
                     <TouchableOpacity onPress={() => deleteTodolist(toDoListId)}
                                       style={styles.deleteButton}>
                         <Text style={{color: 'red'}}>X</Text>
@@ -99,7 +104,11 @@ export function Todolist(
                                     value={'purple'}/>
                             </View>
                             <View style={{width: '78%'}}>
-                                <Text style={t.status ? styles.taskFontIsDone : styles.taskFont}>{t.title}</Text>
+                                     <EditableInput taskStatus={t.status}
+                                                    valueTitle={t.title}
+                                                    taskId={t.id}
+                                                    todolistId={toDoListId}
+                                                    callback={changeTaskTitle}/>
                             </View>
                             <View style={{width: '10%'}}>
                                 <TouchableOpacity onPress={() => deleteTask(t.id)}
@@ -150,16 +159,6 @@ const styles = StyleSheet.create({
     },
     todolistBlock: {
         width: '100%',
-    },
-    taskFont: {
-        color: '#8992ac',
-        fontSize: 21,
-    },
-    taskFontIsDone: {
-        color: '#8992ac',
-        fontSize: 21,
-        textDecorationLine: 'line-through',
-        opacity: 0.5,
     },
     taskBox: {
         marginTop: 5,
