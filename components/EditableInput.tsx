@@ -1,6 +1,6 @@
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Button, Input} from "native-base";
-import React, {useCallback, useMemo, useState} from "react";
+import React, {memo, useCallback, useEffect, useState} from "react";
 import {TaskStatuses} from "../api/todolist-api";
 
 
@@ -12,16 +12,21 @@ type PropsType = {
     todolistId?: string
 }
 
-export const EditableInput = ({callback, taskStatus, valueTitle, taskId, todolistId}: PropsType) => {
+export const EditableInput = memo(({callback, taskStatus, valueTitle, taskId, todolistId}: PropsType) => {
 
     const [editMode, setEditMode] = useState<boolean>(false)
-    const [inputValue, setInputValue] = useState<string>(valueTitle)
+    const [inputValue, setInputValue] = useState<string>('')
     const [error, setError] = useState<boolean>(false)
 
-    const changeInputAddTask = useCallback((title: string) => {
+    useEffect(() => {
+        setInputValue(valueTitle)
+    }, [valueTitle])
+
+    const changeInput = useCallback((title: string) => {
+        console.log(title)
         setInputValue(title)
         setError(false)
-    }, [inputValue, setInputValue])
+    }, [inputValue])
 
     const callbackHandler = () => {
         if (inputValue === '') {
@@ -50,13 +55,13 @@ export const EditableInput = ({callback, taskStatus, valueTitle, taskId, todolis
                             borderWidth={2}
                             outlineColor={error ? '#E37482' : '#A073D8'}
                             borderColor={error ? '#E37482' : '#A073D8'}
-                            fontSize='20'
+                            fontSize='15'
                             borderRadius={5}
                             borderRightWidth={0}
                             borderBottomRightRadius={0}
                             borderTopRightRadius={0}
-                            value={valueTitle}
-                            onChangeText={changeInputAddTask}
+                            value={inputValue}
+                            onChangeText={changeInput}
                         />
                         <Button variant={'outline'}
                                 w={'15%'}
@@ -68,7 +73,7 @@ export const EditableInput = ({callback, taskStatus, valueTitle, taskId, todolis
                                 borderTopLeftRadius={0}
                                 borderColor={error ? '#E37482' : '#A073D8'}
                                 onPress={callbackHandler}
-                        >+</Button>
+                        >✔</Button>
                     </View>
                     {error && <View style={{marginBottom: 8}}>
                         <Text style={{color: 'red', fontSize: 17}}>Need a title!</Text>
@@ -76,7 +81,7 @@ export const EditableInput = ({callback, taskStatus, valueTitle, taskId, todolis
                 </View>}
         </View>
     )
-}
+})
 
 const styles = StyleSheet.create({
     inputAddTaskGroup: {
