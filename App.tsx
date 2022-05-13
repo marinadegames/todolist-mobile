@@ -15,6 +15,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const useAppNavigation = () => useNavigation<NavigationUseType>();
+
 // const Stack = createDrawerNavigator<RootStackParamList>()
 
 
@@ -66,23 +67,25 @@ const Stack1 = () => {
     return (
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#ffb5b5'}}>
             <Text>Stack1</Text>
-            <Button title={'Jump to Home Screen'} onPress={() => navigation.navigate('Home')}/>
+            <Button title={'Jump to Home Screen'} onPress={() => navigation.navigate('UsersScreen', {screen: 'Stack2'})}/>
         </View>
     )
 }
 const Stack2 = () => {
     const navigation = useAppNavigation()
     return (
-        <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor: '#9ac9f1'}}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#9ac9f1'}}>
             <Text>Stack2</Text>
+            <Button title={'Jump to Home Screen'} onPress={() => navigation.navigate('UsersScreen', {screen: 'Stack3'})}/>
         </View>
     )
 }
 const Stack3 = () => {
     const navigation = useAppNavigation()
     return (
-        <View style={{alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff3a3'}}>
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff3a3'}}>
             <Text>Stack3</Text>
+            <Button title={'Jump to Home Screen'} onPress={() => navigation.navigate('Details')}/>
         </View>
     )
 }
@@ -116,8 +119,9 @@ export default function App() {
                         if (route.name === 'Details') {
                             iconName = 'settings'
                         }
-                        // if (route.name == 'Todolists'){
-                        // }
+                        if (route.name == 'Todolists') {
+                            iconName = 'list'
+                        }
                         return {
                             tabBarIcon: ({focused}) => {
                                 return <FontAwesome name={iconName as any} size={24} color={focused ? 'blue' : "black"}/>
@@ -126,7 +130,7 @@ export default function App() {
                     }}>
                         <Tab.Screen name="Home" component={HomeScreen}/>
                         <Tab.Screen name="UsersScreen" component={RootStackNavigation}/>
-                        <Tab.Screen name="Todolists" component={AppWrapper} />
+                        <Tab.Screen name="Todolists" component={AppWrapper}/>
                         <Tab.Screen name="Details" component={Details}/>
                     </Tab.Navigator>
                 </NavigationContainer>
