@@ -58,10 +58,8 @@ export default function AppWrapper() {
     return (
         <>
             <View style={styles.container}>
-                <StatusBar style={'auto'} backgroundColor={'#E3E9FF'}/>
                 <Header addTodolist={addTodolist}/>
                 <TodolistsList/>
-
             </View>
             <Animated.View style={{...styles.containerAbsolute, transform: [{translateY}]}}>
                 <View style={{height: 40}}>
@@ -78,6 +76,7 @@ export default function AppWrapper() {
     )
         ;
 }
+
 
 const styles = StyleSheet.create({
     container: {

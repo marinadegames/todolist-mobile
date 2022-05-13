@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="583623ed-c642-4bdf-a97b-d8c7d42bcbe9" name="Changes" comment="add change task title">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/EditableInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/EditableInput.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/navigation/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/AppWrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -36,7 +41,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="28nS8JNxeyMVLwNT4AxD5OEApFW" />
   <component name="ProjectLevelVcsManager">
@@ -81,6 +86,16 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="web" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -94,6 +109,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.android" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.web" />
       </list>
     </recent_temporary>
@@ -112,7 +128,9 @@
       <workItem from="1652027773407" duration="20880000" />
       <workItem from="1652118054288" duration="8702000" />
       <workItem from="1652286277772" duration="11851000" />
-      <workItem from="1652369825812" duration="4526000" />
+      <workItem from="1652369825812" duration="4662000" />
+      <workItem from="1652453273817" duration="3202000" />
+      <workItem from="1652456538420" duration="11169000" />
     </task>
     <task id="LOCAL-00001" summary="add Header">
       <created>1651950240631</created>
@@ -303,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652388046193</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="add change task title">
+      <created>1652388967034</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1652388967034</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
