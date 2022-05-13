@@ -126,7 +126,7 @@ export default function App() {
                     }}>
                         <Tab.Screen name="Home" component={HomeScreen}/>
                         <Tab.Screen name="UsersScreen" component={RootStackNavigation}/>
-                        <Stack.Screen name="Todolists" component={AppWrapper} />
+                        <Tab.Screen name="Todolists" component={AppWrapper} />
                         <Tab.Screen name="Details" component={Details}/>
                     </Tab.Navigator>
                 </NavigationContainer>

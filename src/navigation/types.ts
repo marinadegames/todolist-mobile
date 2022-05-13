@@ -5,7 +5,7 @@ export type RootTabParamList = {
     Home: undefined,
     UsersScreen: NavigatorScreenParams<RootStackParamList>
     Details: undefined
-    AppWrapper: undefined
+    Todolists: undefined
 };
 
 export type RootStackParamList = {
