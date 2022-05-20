@@ -91,6 +91,9 @@ export function Todolist(props: TodolistPropsType) {
 
             <View style={styles.todolistBlock}>
                 <FlatList data={props.tasks}
+                    // scrollEnabled={true}
+                          nestedScrollEnabled={true}
+                          showsVerticalScrollIndicator={false}
                           keyExtractor={t => t.id}
                           renderItem={({item}) => {
                               return (

@@ -51,7 +51,7 @@ export const EditableInput = memo(({callback, taskStatus, valueTitle, taskId}: P
                         <Input
                             w={'85%'}
                             borderWidth={2}
-                            outlineColor={error ? '#E37482' : '#A073D8'}
+                            // outlineColor={error ? '#E37482' : '#A073D8'}
                             borderColor={error ? '#E37482' : '#A073D8'}
                             fontSize='15'
                             borderRadius={5}

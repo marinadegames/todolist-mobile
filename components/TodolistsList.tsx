@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux";
 import {filterTasksType, Todolist} from "./Todolist";
 import {TaskStatuses, TaskType} from "../api/todolist-api";
-import {ScrollView, StyleSheet} from "react-native";
+import {ScrollView, StyleSheet, View} from "react-native";
 import {rootReducerType, useAppDispatch} from "../redux/store";
 import {addTasksTC, changeTaskTitleTC, deleteTaskTC, TaskStateType, updateTaskStatusTC} from "../redux/tasksReducer";
 import React, {useCallback, useEffect} from "react";
@@ -63,7 +63,7 @@ export default function TodolistsList() {
     // if (!isLoggedIn) return <Navigate to={'/login'}/>
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
+        <View style={styles.scrollView}>
             {todolists.map((tl) => {
                 return (
                     <Todolist key={tl.id}
@@ -81,14 +81,13 @@ export default function TodolistsList() {
                     />
                 )
             })}
-        </ScrollView>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     scrollView: {
         marginTop: 15,
-        marginBottom: 40,
         width: '100%',
     },
 });

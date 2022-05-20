@@ -10,7 +10,7 @@ export default function Header({addTodolist}: PropsType) {
 
     const addTodolistFoo = useCallback((title: string) => {
         addTodolist(title)
-    },[])
+    }, [])
 
     return (
         <View style={styles.headerBox}>

@@ -36,7 +36,7 @@ export default function UniversalInput({placeholder, callback, valueTitle, heigh
                     w={'85%'}
                     placeholder={placeholder}
                     borderWidth={2}
-                    outlineColor={errorAddTask ? '#E37482' : '#A073D8'}
+                    // outlineColor={errorAddTask ? '#E37482' : '#A073D8'}
                     borderColor={errorAddTask ? '#E37482' : '#A073D8'}
                     fontSize='20'
                     borderRadius={5}
