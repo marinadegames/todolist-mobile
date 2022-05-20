@@ -4,9 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="583623ed-c642-4bdf-a97b-d8c7d42bcbe9" name="Changes" comment="add todolists in menu">
+    <list default="true" id="583623ed-c642-4bdf-a97b-d8c7d42bcbe9" name="Changes" comment="fix">
+      <change afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AppWrapper.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/AppWrapper.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/EditableInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/EditableInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Todolist.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Todolist.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/UniversalInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/UniversalInput.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +60,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -81,6 +90,16 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="eject" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="eject" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -104,6 +123,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.android" />
+        <item itemvalue="npm.eject" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.web" />
       </list>
@@ -125,7 +145,12 @@
       <workItem from="1652286277772" duration="11851000" />
       <workItem from="1652369825812" duration="4662000" />
       <workItem from="1652453273817" duration="3202000" />
-      <workItem from="1652456538420" duration="11692000" />
+      <workItem from="1652456538420" duration="12308000" />
+      <workItem from="1652558337045" duration="37000" />
+      <workItem from="1652634697689" duration="478000" />
+      <workItem from="1652710875144" duration="5000" />
+      <workItem from="1653059811147" duration="178000" />
+      <workItem from="1653072644495" duration="2443000" />
     </task>
     <task id="LOCAL-00001" summary="add Header">
       <created>1651950240631</created>
@@ -337,7 +362,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652469144319</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="fix">
+      <created>1652470178456</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1652470178456</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -373,7 +405,6 @@
     <MESSAGE value="add bll &#10;add many refactors" />
     <MESSAGE value="fix bugs" />
     <MESSAGE value="added loading" />
-    <MESSAGE value="fix" />
     <MESSAGE value="fetch todolists and tasks" />
     <MESSAGE value="fix shadows" />
     <MESSAGE value="add delete task" />
@@ -381,6 +412,7 @@
     <MESSAGE value="add change task title" />
     <MESSAGE value="test react-native-navigation" />
     <MESSAGE value="add todolists in menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="add todolists in menu" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
 </project>

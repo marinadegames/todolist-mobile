@@ -1,25 +1,23 @@
 import {StyleSheet, Text, View} from "react-native";
 import {Button, Input} from "native-base";
-import React, {useCallback, useState} from "react";
-
+import React, {useState} from "react";
 
 type PropsType = {
     placeholder?: string
     callback: (value: string) => void
     height?: number
     valueTitle?: string
-
 }
 
-export default function UniversalInput({placeholder, callback, valueTitle, height, }: PropsType) {
+export default function UniversalInput({placeholder, callback, valueTitle, height,}: PropsType) {
 
     const [inputValue, setInputValue] = useState<string>('')
     const [errorAddTask, setErrorAddTask] = useState<boolean>(false)
 
-    const changeInputAddTask = useCallback((title: string) => {
+    const changeInputAddTask = (title: string) => {
         setInputValue(title)
         setErrorAddTask(false)
-    }, [inputValue, setInputValue])
+    }
 
     const buttonHandler = () => {
         if (inputValue === '') {
@@ -27,15 +25,14 @@ export default function UniversalInput({placeholder, callback, valueTitle, heigh
         }
         if (inputValue !== '' && !errorAddTask)
             callback(inputValue)
-            setInputValue('')
-
+        setInputValue('')
     }
 
     return (
         <View>
-
             <View style={styles.inputAddTaskGroup}>
                 <Input
+                    style={styles.test}
                     w={'85%'}
                     placeholder={placeholder}
                     borderWidth={2}
@@ -60,7 +57,6 @@ export default function UniversalInput({placeholder, callback, valueTitle, heigh
                         borderColor={errorAddTask ? '#E37482' : '#A073D8'}
                         onPress={buttonHandler}
                 >+</Button>
-
             </View>
             {errorAddTask && (
                 <View style={{marginBottom: 8}}>
@@ -71,7 +67,6 @@ export default function UniversalInput({placeholder, callback, valueTitle, heigh
     )
 }
 
-
 const styles = StyleSheet.create({
     inputAddTaskGroup: {
         paddingVertical: 10,
@@ -80,4 +75,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between'
     },
+    test: {
+
+
+    }
 })

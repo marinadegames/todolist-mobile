@@ -3,7 +3,6 @@ import {Button, Input} from "native-base";
 import React, {memo, useCallback, useEffect, useState} from "react";
 import {TaskStatuses} from "../api/todolist-api";
 
-
 type PropsType = {
     callback: (taskId: string, title: string) => void
     valueTitle: string
@@ -12,7 +11,7 @@ type PropsType = {
     todolistId?: string
 }
 
-export const EditableInput = memo(({callback, taskStatus, valueTitle, taskId, todolistId}: PropsType) => {
+export const EditableInput = memo(({callback, taskStatus, valueTitle, taskId}: PropsType) => {
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [inputValue, setInputValue] = useState<string>('')
@@ -23,7 +22,6 @@ export const EditableInput = memo(({callback, taskStatus, valueTitle, taskId, to
     }, [valueTitle])
 
     const changeInput = useCallback((title: string) => {
-        console.log(title)
         setInputValue(title)
         setError(false)
     }, [inputValue])
